@@ -25,14 +25,12 @@ var router = express.Router();              // get an instance of the express Ro
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/api/', function(req, res) {
-    console.log('GET Status:' + status);
     res.json(status);   
 });
 
 router.post('/api/', function(req, res) {
     status = !status;
     res.json(status);   
-    console.log('POST Status:' + status);
 });
 
 router.get('/', function(req, res){
@@ -51,4 +49,3 @@ app.use(express.static('public'));
 // START THE SERVER
 // =============================================================================
 app.listen(port);
-console.log('Magic happens on port ' + port);

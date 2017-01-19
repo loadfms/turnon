@@ -1,5 +1,7 @@
 var component = {
     get: function () {
+
+
         var url = "/api/";
         $.ajax({
             url: url,
@@ -9,10 +11,15 @@ var component = {
                     text = 'Desligar';
                 }
                 $('#btn-send').html(text);
+
+
             }
         });
     },
-    post: function () {
+    post: function (sender) {
+        $(sender).css('display', 'none');
+        $('#loading').css('display', 'inline-block');
+
         var url = "/api/";
         $.ajax({
             url: url,
@@ -21,6 +28,20 @@ var component = {
                 component.get();
             }
         });
+
+        $('#loading')
+            .delay(3000)
+            .queue(function (next) {
+                $(this).css('display', 'none');
+                next();
+            });
+
+        $('#btn-send')
+            .delay(3000)
+            .queue(function (next) {
+                $(this).css('display', 'inline-block');
+                next();
+            });
     }
 }
 
